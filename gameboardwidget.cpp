@@ -33,6 +33,9 @@ void GameBoardWidget::performMove() {
     }
     else {
         currentPlayerIndex = nextPlayerIndex();
+
+        QString turn = " turn";
+        emit turnPassed(currentPlayerToken() + turn);
     }
 }
 
@@ -61,6 +64,8 @@ void GameBoardWidget::restartGame() {
     currentPlayerIndex = 0;
     winnerPlayerToken = ' ';
     draw = false;
+    QString turn = " turn";
+    emit turnPassed(currentPlayerToken() + turn);
 }
 
 bool GameBoardWidget::checkRows() {

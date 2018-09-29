@@ -16,6 +16,7 @@ signals:
     void gameFinished();
     void gameFinished(char winnerToken);
     void gameFinished(QString formatedWinner);
+    void turnPassed(QString formatedPlayerTurn);
 
 public slots:
     void performMove();
