@@ -10,10 +10,12 @@ class GameBoardWidget : public QWidget
     Q_OBJECT
 public:
     explicit GameBoardWidget(QWidget *parent = nullptr);
-    void checkForWinners();
+    bool checkForWinners();
 
 signals:
     void gameFinished();
+    void gameFinished(char winnerToken);
+    void gameFinished(QString formatedWinner);
 
 public slots:
     void performMove();
@@ -41,7 +43,7 @@ private:
     bool checkDiagonals();
     bool gameBoardFull();
 
-
+    QString formatedWinnerText();
 };
 
 #endif // GAMEBOARDWIDGET_H

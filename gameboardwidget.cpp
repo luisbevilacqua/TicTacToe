@@ -24,24 +24,20 @@ void GameBoardWidget::performMove() {
 
     clickedCell->setPlayerToken(currentPlayerToken());
 
-    checkForWinners();
-
-    if(winnerPlayerToken != ' ') {
-
+    if(checkForWinners()) {
+        finishGame();
     }
-    else if(draw) {
-
+    else if(gameBoardFull()) {
+        draw = true;
+        finishGame();
     }
     else {
         currentPlayerIndex = nextPlayerIndex();
     }
 }
 
-void GameBoardWidget::checkForWinners() {
-  if(checkRows() || checkColumns() || checkDiagonals() || gameBoardFull()) {
-      finishGame();
-      emit gameFinished();
-  }
+bool GameBoardWidget::checkForWinners() {
+  return checkRows() || checkColumns() || checkDiagonals();
 }
 
 void GameBoardWidget::finishGame() {
@@ -50,6 +46,10 @@ void GameBoardWidget::finishGame() {
             gameMatrix[i][j]->setDisabled(true);
         }
     }
+
+    emit gameFinished();
+    emit gameFinished(currentPlayerToken());
+    emit gameFinished(formatedWinnerText());
 }
 
 void GameBoardWidget::restartGame() {
@@ -153,4 +153,17 @@ int GameBoardWidget::nextPlayerIndex() {
     }
 
     return nextPlayerIndex;
+}
+
+QString GameBoardWidget::formatedWinnerText() {
+    QString winnerText;
+
+    if(draw) {
+        winnerText = "Draw";
+    } else {
+        QString wins = " Wins";
+        winnerText = currentPlayerToken() + wins;
+    }
+
+    return winnerText;
 }

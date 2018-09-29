@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->restartButton, SIGNAL(clicked()), ui->gameBoard, SLOT(restartGame()));
+    connect(ui->restartButton, SIGNAL(clicked()), ui->winnerLabel, SLOT(clear()));
+    connect(ui->gameBoard, SIGNAL(gameFinished(QString)), ui->winnerLabel, SLOT(setText(QString)));
 }
 
 MainWindow::~MainWindow()
