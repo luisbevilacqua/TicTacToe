@@ -76,7 +76,7 @@ bool GameBoardWidget::checkRows() {
           row[j] = gameMatrix[i][j];
         }
 
-        if(areAllEqual(row, NUMBER_OF_COLUMNS)){
+        if(areAllEqual(row, NUMBER_OF_ROWS)){
           winnerPlayerToken = row[0]->playerToken;
           return true;
         }
