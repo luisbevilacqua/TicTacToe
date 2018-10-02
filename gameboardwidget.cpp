@@ -4,8 +4,8 @@ GameBoardWidget::GameBoardWidget(QWidget *parent) : QWidget(parent)
 {
     QGridLayout *layout = new QGridLayout();
 
-    for(int i = 0; i < NUMBER_OF_COLUMNS; i++) {
-        for(int j = 0; j < NUMBER_OF_ROWS; j++) {
+    for(int i = 0; i < NUMBER_OF_ROWS; i++) {
+        for(int j = 0; j < NUMBER_OF_COLUMNS; j++) {
             GameCellWidget *gameCell = new GameCellWidget();
 
             gameMatrix[i][j] = gameCell;
@@ -44,8 +44,8 @@ bool GameBoardWidget::checkForWinners() {
 }
 
 void GameBoardWidget::finishGame() {
-    for(int i=0; i < NUMBER_OF_COLUMNS; i++){
-        for(int j=0; j < NUMBER_OF_ROWS; j ++){
+    for(int i=0; i < NUMBER_OF_ROWS; i++){
+        for(int j=0; j < NUMBER_OF_COLUMNS; j++){
             gameMatrix[i][j]->setDisabled(true);
         }
     }
@@ -56,8 +56,8 @@ void GameBoardWidget::finishGame() {
 }
 
 void GameBoardWidget::restartGame() {
-    for(int i=0; i < NUMBER_OF_COLUMNS; i++){
-        for(int j=0; j < NUMBER_OF_ROWS; j ++){
+    for(int i=0; i < NUMBER_OF_ROWS; i++){
+        for(int j=0; j < NUMBER_OF_COLUMNS; j ++){
             gameMatrix[i][j]->clear();
         }
     }
@@ -76,7 +76,7 @@ bool GameBoardWidget::checkRows() {
           row[j] = gameMatrix[i][j];
         }
 
-        if(areAllEqual(row, NUMBER_OF_ROWS)){
+        if(areAllEqual(row, NUMBER_OF_COLUMNS)){
           winnerPlayerToken = row[0]->playerToken;
           return true;
         }
@@ -92,7 +92,7 @@ bool GameBoardWidget::checkColumns() {
           column[j] = gameMatrix[j][i];
         }
 
-        if(areAllEqual(column, NUMBER_OF_COLUMNS)){
+        if(areAllEqual(column, NUMBER_OF_ROWS)){
           winnerPlayerToken = column[0]->playerToken;
           return true;
         }
@@ -125,8 +125,8 @@ bool GameBoardWidget::checkDiagonals() {
 
 
 bool GameBoardWidget::gameBoardFull() {
-    for(int i=0; i < NUMBER_OF_COLUMNS; i++){
-        for(int j=0; j < NUMBER_OF_ROWS; j ++){
+    for(int i=0; i < NUMBER_OF_ROWS; i++){
+        for(int j=0; j < NUMBER_OF_COLUMNS; j ++){
             if(gameMatrix[i][j]->isEmpty()){
                 return false;
             }

@@ -29,7 +29,7 @@ private:
     static const int NUMBER_OF_PLAYERS = 2;
     const char PLAYER_TOKENS[NUMBER_OF_PLAYERS] = {'X', 'O'};
 
-    GameCellWidget* gameMatrix[NUMBER_OF_COLUMNS][NUMBER_OF_ROWS];
+    GameCellWidget* gameMatrix[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
 
     int currentPlayerIndex = 0;
     char winnerPlayerToken = ' ';
